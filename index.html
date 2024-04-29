@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackerSociety | Private Use</title>
+</head>
+<body>
+
+<fieldset>
+<h1 class="ht">This is a private website, and is not intended for public use <br>
+        if you ignore this <span style="color: red;"><b>Warning</b></span>, your data <span><b>Will Be logged.</b></span></h1>
+        </fieldset>
+        <div class="login-container">
+            <h2 style="font-family: Arial, sans-serif;"><b>Login</b></h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" onclick="login()">Login</button>
+                    <h1> </h1>
+                    <button type="submit" onclick="register()">Register</button>
+                </div>
+            </form>
+        </div>
+    
+        <script type="module" src="index.js"></script>
+
+
+
+
+
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+            import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+            import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+            const firebaseConfig = {
+              apiKey: "AIzaSyC3hnYx4VGksVaov5XCzFSJ6QQtPpLAdHI",
+              authDomain: "hackersociety-3d639.firebaseapp.com",
+              projectId: "hackersociety-3d639",
+              storageBucket: "hackersociety-3d639.appspot.com",
+              messagingSenderId: "167069712090",
+              appId: "1:167069712090:web:7f06897f9e35a6b743efe3"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase();
+            const auth = getAuth(app);
+
+            let email = document.getElementById('email')
+            let password = document.getElementById('password')
+
+            let RegisterUser = evt => {
+                evt.preventDefault();
+
+                createUserWithEmailAndPassword(auth, email.value, password.value)
+                .then((credentials)=>{
+                    console.log(credentials);
+                })
+                .catch((error)=> {
+                    alert(error.message);
+                    console.log(error.code);
+                    console.log(error.message);
+                })
+            }
+            MainForm.addEventListener('submit', RegisterUser);
+          </script>
+
+
+
+
+</body>
+</html>
